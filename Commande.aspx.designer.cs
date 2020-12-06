@@ -24,15 +24,6 @@ namespace ClientCommandeWeb
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// Contrôle TextBox2.
-        /// </summary>
-        /// <remarks>
-        /// Champ généré automatiquement.
-        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox2;
-
-        /// <summary>
         /// Contrôle CustomerList.
         /// </summary>
         /// <remarks>
@@ -51,13 +42,22 @@ namespace ClientCommandeWeb
         protected global::System.Web.UI.WebControls.DropDownList EmployeList;
 
         /// <summary>
-        /// Contrôle orderdate1.
+        /// Contrôle OrderDate.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl orderdate1;
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl OrderDate;
+
+        /// <summary>
+        /// Contrôle RequiredDate.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl RequiredDate;
 
         /// <summary>
         /// Contrôle freight.
@@ -69,13 +69,13 @@ namespace ClientCommandeWeb
         protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl freight;
 
         /// <summary>
-        /// Contrôle produitname.
+        /// Contrôle ProduitList1.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList produitname;
+        protected global::System.Web.UI.WebControls.DropDownList ProduitList1;
 
         /// <summary>
         /// Contrôle prixu.
@@ -105,13 +105,22 @@ namespace ClientCommandeWeb
         protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl discount;
 
         /// <summary>
-        /// Contrôle ajouter.
+        /// Contrôle Button1.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ajouter;
+        protected global::System.Web.UI.WebControls.Button Button1;
+
+        /// <summary>
+        /// Contrôle text.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal text;
 
         /// <summary>
         /// Contrôle GridView2.
@@ -123,12 +132,21 @@ namespace ClientCommandeWeb
         protected global::System.Web.UI.WebControls.GridView GridView2;
 
         /// <summary>
-        /// Contrôle insert.
+        /// Contrôle Button2.
         /// </summary>
         /// <remarks>
         /// Champ généré automatiquement.
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button insert;
+        protected global::System.Web.UI.WebControls.Button Button2;
+
+        /// <summary>
+        /// Contrôle GridView1.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GridView1;
     }
 }

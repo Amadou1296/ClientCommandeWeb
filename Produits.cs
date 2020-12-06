@@ -5,6 +5,7 @@ using System.Web;
 
 namespace ClientCommandeWeb
 {
+
     public class Produits
     {
         private int freight;
@@ -53,4 +54,7 @@ namespace ClientCommandeWeb
             set { productname = value; }
         }
     }
+
+
+    
 }

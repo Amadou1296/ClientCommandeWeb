@@ -11,7 +11,7 @@
      </head>
     <body>
         
-        <div class="container">
+        <div class="container-fluid">
             <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
                 <a class="navbar-brand" href="#">E-Commerce</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -20,13 +20,13 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">
-                            <a class="nav-link" href="#">Accueil <span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="Accueil.aspx">Accueil <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="Commande.aspx">Commande</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Produit</a>
+                            <a class="nav-link" href="Produits.aspx">Produit</a>
                         </li>
                     </ul>
                     <form class="form-inline my-2 my-lg-0">
@@ -38,72 +38,74 @@
 
             <form id="form1" class="form-group" runat="server">
                 <div class="row" style="margin-top:1%;">
-                    <div class="col-md-4 col-sm-12">
+                    <div class="col-md-4 ">
+                        <div style="border: 1px solid;">
+                        <p style="font-size: 20px;font-weight:bold; text-align:center">Ajout de clients</p>
                         <table class="table table-responsive">
                             <tr>    
                                 <td>CustomerID</td>    
                                 <td>    
-                                    <asp:TextBox  ID="CustomerID" runat="server" />    
+                                    <asp:TextBox class="form-control" ID="CustomerID" runat="server" />    
                                 </td>    
                             </tr>    
                             <tr>    
                                 <td>CompanyName</td>    
                                 <td>    
-                                    <asp:TextBox ID="CompanyName" runat="server" />    
+                                    <asp:TextBox class="form-control" ID="CompanyName" runat="server" />    
                                 </td>    
                             </tr>    
                             <tr>    
                                 <td>ContactName</td>    
                                 <td>    
-                                    <asp:TextBox ID="ContactName" runat="server" />    
+                                    <asp:TextBox class="form-control" ID="ContactName" runat="server" />    
                                 </td>    
                             </tr>
                             <tr>    
                                 <td>ContactTitle</td>    
                                 <td>    
-                                    <asp:TextBox ID="ContactTitle" runat="server" />    
+                                    <asp:TextBox class="form-control" ID="ContactTitle" runat="server" />    
                                 </td>    
                             </tr> 
                             <tr>    
                                 <td>Address</td>    
                                 <td>    
-                                    <asp:TextBox ID="Address" runat="server" />    
+                                    <asp:TextBox class="form-control" ID="Address" runat="server" />    
                                 </td>    
                             </tr> 
                             <tr>    
                                 <td>City</td>    
                                 <td>    
-                                    <asp:TextBox ID="City" runat="server" />    
+                                    <asp:TextBox class="form-control" ID="City" runat="server" />    
                                 </td>    
                             </tr>
                             <tr>    
                                 <td>Region</td>    
                                 <td>    
-                                    <asp:TextBox ID="Region" runat="server" />    
+                                    <asp:TextBox class="form-control" ID="Region" runat="server" />    
                                 </td>    
                             </tr>
                             <tr>    
                                 <td>PostalCode</td>    
                                 <td>    
-                                    <asp:TextBox ID="PostalCode" runat="server" />    
+                                    <asp:TextBox class="form-control" ID="PostalCode" runat="server" />    
                                 </td>    
                             </tr>
                             <tr>    
                                 <td>Country</td>    
                                 <td>    
-                                    <asp:TextBox ID="Country" runat="server" />    
+                                    <asp:TextBox class="form-control" ID="Country" runat="server" />    
                                 </td>    
                             </tr>
                             <tr>    
                                 <td>Phone</td>    
                                 <td>    
-                                    <asp:TextBox ID="Phone" type="number" runat="server" />    
+                                    <asp:TextBox class="form-control" ID="Phone" type="number" runat="server" />    
                                 </td>    
                             </tr>
                             <tr>    
                                 <td>Fax</td>    
                                 <td>    
-                                    <asp:TextBox ID="Fax" type="number" runat="server" />    
+                                    <asp:TextBox class="form-control" ID="Fax" type="number" runat="server" />    
                                 </td>    
                             </tr>
                             <tr>    
@@ -113,10 +115,11 @@
                                 </td>    
                             </tr>
                         </table>
+                            </div>
                     </div>
 
                      <div class="col-md-8">
-                        <div style="width:100%; overflow:auto; height:11%;">
+                        <div style="width:100%; overflow:auto; height:15%;">
                             <asp:GridView ID="GridView1" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" Width="100%">
                                 <AlternatingRowStyle BackColor="White" />
                                 
@@ -132,7 +135,10 @@
                                 <SortedDescendingHeaderStyle BackColor="#4870BE" />
 
                                 <Columns>
-                                    <asp:ButtonField ButtonType="Button" CommandName="Delete" HeaderText="Supprimer" ShowHeader="True" Text="supprimer" />
+                                    <asp:ButtonField ButtonType="Button"  CommandName="Delete" HeaderText="Supprimer"  ShowHeader="True" Text="supprimer" />
+                                </Columns>
+                                <Columns>
+                                    <asp:ButtonField ButtonType="Button"  CommandName="update" HeaderText="Modifier" ShowHeader="True" Text="modifier" />
                                 </Columns>
                             </asp:GridView>
                         </div>

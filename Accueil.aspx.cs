@@ -15,7 +15,7 @@ namespace ClientCommandeWeb
         SqlCommand cmd = new SqlCommand();
         DataSet dataSet;
         DataTable dataTable = new DataTable();
-        SqlConnection con = new SqlConnection(@"data source=DESKTOP-SJR4UK4\SQLEXPRESS; Initial catalog=Northwind; integrated security=SSPI");
+        SqlConnection con = new SqlConnection(@"data source=DESKTOP-KCDMUM1\SQLEXPRESS; Initial catalog=Northwind; integrated security=SSPI");
         protected void Page_Load(object sender, EventArgs e)
         {
             con.Open();
@@ -23,6 +23,15 @@ namespace ClientCommandeWeb
             {
                 getDate();
             }
+        }
+
+        public void delete_click(object sender, EventArgs e)
+        {
+            
+        }
+
+        public void update_click(object sender, EventArgs e)
+        {
 
         }
 

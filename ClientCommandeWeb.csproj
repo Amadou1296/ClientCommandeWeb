@@ -77,6 +77,7 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="lescommandes.aspx" />
     <Content Include="Produits.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -193,6 +194,14 @@
     </Compile>
     <Compile Include="Commande.aspx.designer.cs">
       <DependentUpon>Commande.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="commande.cs" />
+    <Compile Include="lescommandes.aspx.cs">
+      <DependentUpon>lescommandes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="lescommandes.aspx.designer.cs">
+      <DependentUpon>lescommandes.aspx</DependentUpon>
     </Compile>
     <Compile Include="Produits.aspx.cs">
       <DependentUpon>Produits.aspx</DependentUpon>
