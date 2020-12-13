@@ -21,7 +21,7 @@ namespace ClientCommandeWeb
             con.Open();
             if (!Page.IsPostBack)
             {
-                displayProducts();
+                ///displayProducts();
             }
         }
 
@@ -29,12 +29,7 @@ namespace ClientCommandeWeb
 
         protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            if(e.CommandName == "Edit")
-            {
-                string script = "alert(\"Inscription Reussi !\");";
-                ScriptManager.RegisterStartupScript(this, GetType(),
-                                      "ServerControlScript", script, true);
-            }
+           
         }
 
         
@@ -67,9 +62,7 @@ namespace ClientCommandeWeb
 
         protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string script = "alert(\"Inscription Reussi !\");";
-            ScriptManager.RegisterStartupScript(this, GetType(),
-                                  "ServerControlScript", script, true);
+           
         }
     }
 }

@@ -11,8 +11,9 @@ namespace ClientCommandeWeb
 {
     public partial class Commande : System.Web.UI.Page
     {
+        public string requete; 
         
-        static int indexEdit;
+        static int indexEdit=2;
         
         static List<Produits> produitList = new List<Produits>();
         static List<commande> commandeList = new List<commande>();
@@ -26,17 +27,18 @@ namespace ClientCommandeWeb
             con.Open();
             if(!Page.IsPostBack)
             {
+                //display_commands();
                 displayProductToAdd();
-                display_commands();
                 mesList(CustomerList, "Customers", "customerID", "customerid");
                 mesList(EmployeList, "employees", "firstname", "employeeid");
                 mesList(ProduitList1, "products", "productname", "productid");
-
+                //mesList(Search, "Customers", "customerID", "customerid");
                 //a revoir 
                 GridView2.DataSource = produitList;
                 GridView2.DataBind();
 
-                
+
+
             }
         }
 
@@ -57,6 +59,22 @@ namespace ClientCommandeWeb
             dropDownList.DataBind();  //binding dropdownlist
             con.Close();
 
+        }
+
+        protected void display_commands()
+        {
+            cmd.CommandText = "SELECT [Order Details].*, Orders.* FROM [Order Details] INNER JOIN Orders ON [Order Details].OrderID = Orders.OrderID";
+            cmd.Connection = con;
+            sqlDataAdapter = new SqlDataAdapter(cmd);
+            dataSet = new DataSet();
+            sqlDataAdapter.Fill(dataSet);
+            cmd.ExecuteNonQuery();
+
+            /*GridView1.Columns.Add(bf_supp);
+            GridView1.Columns.Add(bf_mod);*/
+            GridView1.DataSource = dataSet;
+            GridView1.DataBind();
+            con.Close();
         }
 
         protected void ajouter_Click(object sender, EventArgs e)
@@ -84,6 +102,7 @@ namespace ClientCommandeWeb
                         EmployeList.Enabled = false;
                         orderdate1.Visible = false;*/
                         Button2.Visible = true;
+                        Button3.Visible = true;
                         text.Text = "Liste des produits à ajouter :";
                     }
 
@@ -107,21 +126,7 @@ namespace ClientCommandeWeb
 
         }
 
-        protected void display_commands()
-        {
-            cmd.CommandText = "select o.OrderID, c.CustomerID as Clients, e.FirstName as Employe, p.ProductName as produit, o.OrderDate, O.ShipAddress, od.UnitPrice from Orders o, [Order Details] od, Products p, Customers c, Employees e where o.OrderID=od.OrderID and od.ProductID=p.ProductID and o.CustomerID=c.CustomerID and o.EmployeeID=e.EmployeeID";
-            cmd.Connection = con;
-            sqlDataAdapter = new SqlDataAdapter(cmd);
-            dataSet = new DataSet();
-            sqlDataAdapter.Fill(dataSet);
-            cmd.ExecuteNonQuery();
-
-            /*GridView1.Columns.Add(bf_supp);
-            GridView1.Columns.Add(bf_mod);*/
-            GridView1.DataSource = dataSet;
-            GridView1.DataBind();
-            con.Close();
-        }
+        
 
 
         protected int insert_products(commande commandes)
@@ -151,6 +156,16 @@ namespace ClientCommandeWeb
                         
         }
 
+        protected void annule_Click(object sender, EventArgs e)
+        {
+            commandeList.Clear();
+            displayProductToAdd();
+
+            string script1 = "alert(\" Vous avez annulé " + commandeList.Count + " commande(s) !!!\")";
+            ScriptManager.RegisterStartupScript(this, GetType(),
+                                  "ServerControlScript", script1, true);
+        }
+
         protected void insert_Click(object sender, EventArgs e)
         {
             int result=0;
@@ -174,97 +189,23 @@ namespace ClientCommandeWeb
             commandeList.Clear();
         }
 
+      
         protected void gridview_delete(object sender, GridViewDeletedEventArgs e)
         {
 
         }
-        protected void gridview_edit(object sender, GridViewEditEventArgs e)
+
+        protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
-            Session["index"] = e.NewEditIndex;
-            //int orderID = Int.Parse( GridView1.Rows[indexEdit].Cells[0].Text);
-            string client = GridView1.Rows[e.NewEditIndex].Cells[2].Text;
-            string employe = GridView1.Rows[indexEdit].Cells[2].Text;
-            string produit = GridView1.Rows[indexEdit].Cells[3].Text;
-            string orderDate = GridView1.Rows[e.NewEditIndex].Cells[0].Text;
-            string shipAdress = GridView1.Rows[indexEdit].Cells[5].Text;
-            string unitPrice = GridView1.Rows[indexEdit].Cells[6].Text;
-            string script1 = "alert(\"" + client + "\")";
-            /*ScriptManager.RegisterStartupScript(this, GetType(),
-                                  "ServerControlScript", script1, true);*/
-            GridView1.EditIndex = e.NewEditIndex;
-            display_commands();
-            
+            TableCell cell = GridView1.Rows[e.RowIndex].Cells[1];
+            int orderID = Int32.Parse( cell.Text);
+
+            cmd.CommandText = "delete from [Order Details] where OrderID="+orderID;
+
+            cmd.Connection = con;
+            int i = cmd.ExecuteNonQuery();
+
+
         }
-        protected void gridview_cancel(object sender, GridViewCancelEditEventArgs e)
-        {
-
-            GridView1.EditIndex = -1;
-            display_commands();
-        }
-        protected void gridview_updating(object sender, GridViewUpdateEventArgs e)
-        {
-            string client = GridView1.Rows[e.RowIndex].Cells[2].Text;
-            string employe = GridView1.Rows[indexEdit].Cells[2].Text;
-            string produit = GridView1.Rows[indexEdit].Cells[3].Text;
-            string orderDate = GridView1.Rows[indexEdit].Cells[0].Text;
-            string shipAdress = GridView1.Rows[indexEdit].Cells[5].Text;
-            string unitPrice = GridView1.Rows[indexEdit].Cells[6].Text;
-            string script1 = "alert(\"" + client + "\")";
-            ScriptManager.RegisterStartupScript(this, GetType(),
-                                  "ServerControlScript", script1, true);
-
-            GridView1.EditIndex = -1;
-            display_commands();
-        }
-        protected void gridview_update(object sender, GridViewUpdatedEventArgs e)
-        {
-
-            string client = GridView1.Rows[3].Cells[2].Text;
-            string employe = GridView1.Rows[indexEdit].Cells[2].Text;
-            string produit = GridView1.Rows[indexEdit].Cells[3].Text;
-            string orderDate = GridView1.Rows[indexEdit].Cells[0].Text;
-            string shipAdress = GridView1.Rows[indexEdit].Cells[5].Text;
-            string unitPrice = GridView1.Rows[indexEdit].Cells[6].Text;
-            string script1 = "alert(\"" + client + "\")";
-            ScriptManager.RegisterStartupScript(this, GetType(),
-                                  "ServerControlScript", script1, true);
-            GridView1.EditIndex = -1;
-            display_commands();
-        }
-
-        protected void Annuler(object sender, EventArgs e)
-        {
-
-            GridView1.EditIndex = -1;
-            display_commands();
-        }
-
-        protected void Modifier(object sender, EventArgs e)
-        {
-            int index =  ((int) Session["index"]);
-            //int orderID = Int32.Parse( GridView1.Rows[indexEdit].Cells[0].Text);
-            string client = GridView1.Rows[index].Cells[3].Text;
-            string employe = GridView1.Rows[indexEdit].Cells[2].Text;
-            string produit = GridView1.Rows[index].Cells[3].Text.ToString();
-            string orderDate = GridView1.Rows[indexEdit].Cells[0].Text;
-            string shipAdress = GridView1.Rows[indexEdit].Cells[5].Text;
-            string unitPrice = GridView1.Rows[indexEdit].Cells[6].Text;
-            string script1 = "alert(\"" + produit + " \")";
-            ScriptManager.RegisterStartupScript(this, GetType(),
-                                  "ServerControlScript", script1, true);
-            GridView1.EditIndex = -1;
-            display_commands();
-        }
-
-        protected void Supprimer(object sender, EventArgs e)
-        {
-            GridView1.EditIndex = -1;
-            display_commands();
-        }
-
-
-
-
-
     }
 }

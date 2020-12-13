@@ -11,6 +11,8 @@ namespace ClientCommandeWeb
 {
     public partial class Accueil : System.Web.UI.Page
     {
+
+        static int indexEdit;
         SqlDataAdapter sqlDataAdapter;
         SqlCommand cmd = new SqlCommand();
         DataSet dataSet;
@@ -19,21 +21,12 @@ namespace ClientCommandeWeb
         protected void Page_Load(object sender, EventArgs e)
         {
             con.Open();
-            if(!Page.IsPostBack)
+            if (!Page.IsPostBack)
             {
-                getDate();
             }
         }
 
-        public void delete_click(object sender, EventArgs e)
-        {
-            
-        }
 
-        public void update_click(object sender, EventArgs e)
-        {
-
-        }
 
         protected void insert_Click(object sender, EventArgs e)
         {
@@ -58,28 +51,13 @@ namespace ClientCommandeWeb
                                       "ServerControlScript", script, true);
             }
 
-            getDate();
+            //getDate();
         }
 
-        //recuperer les donnees
-        protected void getDate()
+        protected void Modifier(object sender, EventArgs e)
         {
-            cmd.CommandText = "select * from customers";
-            cmd.Connection = con;
-            sqlDataAdapter = new SqlDataAdapter(cmd);
-            dataSet = new DataSet();
-            sqlDataAdapter.Fill(dataSet);
-            cmd.ExecuteNonQuery();
-            GridView1.DataSource = dataSet;
-            GridView1.DataBind();
-            con.Close();
+
         }
 
-       /* protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
-        {
-            getDate();
-            GridView1.PageIndex = e.NewPageIndex;
-            GridView1.DataBind();
-        }*/
     }
 }
